@@ -1,38 +1,31 @@
 <template>
-    <v-layout row>
-        <v-flex xs12 sm6 offset-sm3>
-            <v-card>
-                <v-toolbar color="primary" dark flat>
-                    <v-btn icon>
-                        <v-icon>arrow_left</v-icon>
-                    </v-btn>
+  <v-layout row>
+    <v-flex xs12 sm6 offset-sm3>
+      <v-card flat>
+        <v-toolbar color="primary" dark flat>
+          <v-btn icon>
+            <v-icon>arrow_left</v-icon>
+          </v-btn>
 
-                    <v-toolbar-title>Projects</v-toolbar-title>
-                </v-toolbar>
+          <v-toolbar-title>Projects</v-toolbar-title>
+        </v-toolbar>
 
-                <v-layout row wrap>
-                    <v-flex xs1>
-                        <v-btn small icon>A</v-btn>
-                        <v-btn small icon>B</v-btn>
-                    </v-flex>
-                    <v-flex xs11>
-                        <v-list two-line>
-                            <template v-for="(item, index) in items">
-                                <ProjectItem :item="item" :key="index" />
-                                <v-divider :key="index"></v-divider>
-                            </template>
-                        </v-list>
-                        <v-list two-line>
-                            <template v-for="(project, index) in projects">
-                                <ProjectItem :item="item" :key="index" />
-                                <v-divider :key="index"></v-divider>
-                            </template>
-                        </v-list>
-                    </v-flex>
-                </v-layout>
-            </v-card>
-        </v-flex>
-    </v-layout>
+        <v-layout row wrap>
+          <v-flex>
+            <v-list two-line>
+              <template v-for="(group, index) in projects">
+                <v-subheader :key="index"> {{ index }}</v-subheader>
+                <template v-for="(item, index) in group">
+                  <ProjectItem :item="item" :key="index"/>
+                  <v-divider :key="index" ></v-divider>
+                </template>
+              </template>
+            </v-list>
+          </v-flex>
+        </v-layout>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -95,9 +88,10 @@ export default {
                         let c = cur.title.charAt(0)
                         tot[c] = tot[c] || []
                         tot[c].push(cur)
+                        return tot
                     }, {})
             }
-            return [];
+            return []
         }
     }
 }
