@@ -63,6 +63,12 @@
       "autoprefixer": {}
     }
   },
+  "prettier": {
+    "tabWidth": 4,
+    "trialingComma": "all",
+    "jsxBracketSameLine": true,
+    "semi": false
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",

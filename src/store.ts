@@ -1,10 +1,21 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from "vue"
+import Vuex from "vuex"
 
-Vue.use(Vuex);
+import firebase from "firebase"
+
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {}
-});
+    state: {},
+    mutations: {},
+    actions: {
+        login() {
+            const provider: firebase.auth.GoogleAuthProvider = new firebase.auth.GoogleAuthProvider()
+
+            firebase
+                .auth()
+                .signInWithPopup(provider)
+                .then(result => {})
+        }
+    }
+})

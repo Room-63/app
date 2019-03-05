@@ -1,11 +1,11 @@
-import Vue from "vue";
-import './plugins/vuetify'
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import "./registerServiceWorker";
+import Vue from "vue"
+import "./plugins/vuetify"
+import App from "./App.vue"
+import router from "./router"
+import store from "./store"
+import "./registerServiceWorker"
 
-import firebase from 'firebase';
+import firebase from "firebase"
 
 // Initialize Firebase
 var config = {
@@ -15,15 +15,13 @@ var config = {
     projectId: "room-63",
     storageBucket: "room-63.appspot.com",
     messagingSenderId: "37014886737"
-};
-firebase.initializeApp(config);
+}
+firebase.initializeApp(config)
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount("#app");
-
-
+    router,
+    store,
+    render: h => h(App)
+}).$mount("#app")
