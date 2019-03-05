@@ -1,73 +1,77 @@
 <template>
-  <v-layout row>
-    <v-flex xs12 sm6 offset-sm3>
-      <v-card>
-        <v-toolbar color="cyan" dark>
-          <v-btn icon>
-            <v-icon>arrow_left</v-icon>
-          </v-btn>
+    <v-layout row>
+        <v-flex xs12 sm6 offset-sm3>
+            <v-card>
+                <v-toolbar color="primary" dark flat>
+                    <v-btn icon>
+                        <v-icon>arrow_left</v-icon>
+                    </v-btn>
 
-          <v-toolbar-title>Projects</v-toolbar-title>
+                    <v-toolbar-title>Projects</v-toolbar-title>
+                </v-toolbar>
 
-          <v-spacer></v-spacer>
-
-          <v-btn icon>
-            <v-icon>search</v-icon>
-          </v-btn>
-        </v-toolbar>
-
-        <v-list two-line>
-          <template v-for="(item, index) in items">
-            <ProjectItem :item="item" :key="index"/>
-          </template>
-        </v-list>
-      </v-card>
-    </v-flex>
-  </v-layout>
+                <v-layout row wrap>
+                    <v-flex xs1>
+                        <v-btn small icon>A</v-btn>
+                        <v-btn small icon>B</v-btn>
+                    </v-flex>
+                    <v-flex xs11>
+                        <v-list two-line>
+                            <template v-for="(item, index) in items">
+                                <ProjectItem :item="item" :key="index" />
+                                <v-divider :key="index"></v-divider>
+                            </template>
+                        </v-list>
+                        <v-list two-line>
+                            <template v-for="(project, index) in projects">
+                                <ProjectItem :item="item" :key="index" />
+                                <v-divider :key="index"></v-divider>
+                            </template>
+                        </v-list>
+                    </v-flex>
+                </v-layout>
+            </v-card>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
-
-import ProjectItem from "../components/ProjectItem.vue";
+import ProjectItem from "../components/ProjectItem.vue"
 
 export default {
-
     components: {
-      ProjectItem
+        ProjectItem
     },
-    
+
     data: () => ({
         items: [
-            { header: "Today" },
+            { header: "A" },
             {
                 avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-                title: "Brunch this weekend?",
+                title: "App for the Organization",
                 subtitle:
                     "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
             },
-            { divider: true, inset: true },
+            { header: "B" },
             {
                 avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-                title:
-                    'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+                title: "Bicoin Shit",
                 subtitle:
                     "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
             },
-            { divider: true, inset: true },
             {
                 avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
-                title: "Oui oui",
+                title: "Binary Encryption PROJECT",
                 subtitle:
                     "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?"
             },
-            { divider: true, inset: true },
             {
                 avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
                 title: "Birthday gift",
                 subtitle:
                     "<span class='text--primary'>Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?"
             },
-            { divider: true, inset: true },
+            { header: "R" },
             {
                 avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
                 title: "Recipe to try",
@@ -75,9 +79,28 @@ export default {
                     "<span class='text--primary'>Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos."
             }
         ]
-    })
+    }),
+
+    mounted() {
+        this.$store.dispatch("loadProjects")
+        console.log(this.projects)
+    },
+
+    computed: {
+        projects() {
+            if (this.$store.state.projects) {
+                return this.$store.state.projects
+                    .sort((a, b) => a.title.charAt(0) > b.title.charAt(0))
+                    .reduce((tot, cur) => {
+                        let c = cur.title.charAt(0)
+                        tot[c] = tot[c] || []
+                        tot[c].push(cur)
+                    }, {})
+            }
+            return [];
+        }
+    }
 }
 </script>
 
-<style>
-</style>
+<style></style>

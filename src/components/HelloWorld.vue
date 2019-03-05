@@ -20,20 +20,27 @@
                     <v-flex mb-2>
                         <ul class="caption mb-5">
                             <li>
-                                Access to the organization is strictly  by invitation
+                                Access to the organization is strictly by
+                                invitation
                             </li>
                             <li>
-                                Login is strictly via Google OAuth 
+                                Login is strictly via Google OAuth
                             </li>
                             <li>
-                                This implies all members must possess a Gmail account
+                                This implies all members must possess a Gmail
+                                account
                             </li>
                         </ul>
                     </v-flex>
                     <v-flex>
-                        <v-btn :to="{name: 'projects'}" :loading="loading" class="white" light>Login</v-btn>
+                        <v-btn
+                            :to="{ name: 'projects' }"
+                            :loading="loading"
+                            class="white"
+                            light
+                            >Login</v-btn
+                        >
                     </v-flex>
-
                 </v-layout>
             </v-container>
         </v-card>
@@ -47,28 +54,27 @@ export default {
     }),
 
     methods: {
-
         login() {
-            this.loading = true;
-            this.$store.dispatch('login');
+            this.loading = true
+            this.$store.dispatch("login")
         }
     }
 }
 </script>
 
 <style scoped>
-    .v-card {
-        background-color: rgba(255, 255, 255, 0.25) !important;
-        max-width: 400px;
-    }
+.v-card {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    max-width: 400px;
+}
 
-    * {
-        font-family: Nunito;
-        list-style-type: none;
-    }
+* {
+    font-family: Nunito;
+    list-style-type: none;
+}
 
-    .ripples-bg {
-        background: url('/img/ripple bg.png');
-        background-size: cover;
-    }
+.ripples-bg {
+    background: url("/img/ripple bg.png");
+    background-size: cover;
+}
 </style>
