@@ -26,12 +26,12 @@
                                 Login is strictly via Google OAuth 
                             </li>
                             <li>
-                                This implies all members must possess a gmail account
+                                This implies all members must possess a Gmail account
                             </li>
                         </ul>
                     </v-flex>
                     <v-flex>
-                        <v-btn @click="login" :loading="loading">Login</v-btn>
+                        <v-btn :to="{name: 'projects'}" :loading="loading" class="white" light>Login</v-btn>
                     </v-flex>
 
                 </v-layout>
