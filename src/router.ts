@@ -4,6 +4,7 @@ import Home from "./views/Home.vue"
 import Projects from "./views/Projects.vue"
 import Timeline from "./views/Timeline.vue"
 import News from "./views/News.vue"
+import Chat from "./views/Chat.vue"
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
             path: "/news",
             name: "news",
             component: News
+        },
+        {
+            path: "/chat",
+            name: "chat",
+            component: Chat
         },
         {
             path: "/about",
