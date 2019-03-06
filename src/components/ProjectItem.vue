@@ -1,6 +1,6 @@
 <template>
 
-    <v-list-tile avatar>
+    <v-list-tile avatar :to="{name: 'timeline'}">
         <v-list-tile-avatar>
             <img :src="item.avatar" />
         </v-list-tile-avatar>
